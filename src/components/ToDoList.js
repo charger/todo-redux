@@ -10,6 +10,17 @@ import MenuItem from 'material-ui/MenuItem';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 class ToDoList extends React.Component {
+  _handleAddNewItem(e) {
+    if (e.nativeEvent.key == "Enter") {
+      this.props.itemAdded({
+        id: new Date().getTime(),
+        title: this.refs.textField.input.value,
+        isDone: false
+      });
+      this.refs.textField.input.value = ''
+    }
+  }
+
   render() {
     const styles = {
       root: {
@@ -21,7 +32,7 @@ class ToDoList extends React.Component {
       }
     };
 
-    const items = this.props.items.map(i => {
+    const items = this.props.data.items.map(i => {
       return <ListItem
         key={i.id}
         leftCheckbox={<Checkbox defaultChecked={i.isDone} />}
@@ -51,8 +62,10 @@ class ToDoList extends React.Component {
 
           <ListItem>
             <TextField
+              ref="textField"
               style={styles.fillWidth}
-              hintText="Hint Text"
+              hintText="Add item"
+              onKeyDown={this._handleAddNewItem.bind(this)}
             />
           </ListItem>
         </List>
@@ -62,7 +75,10 @@ class ToDoList extends React.Component {
 }
 
 ToDoList.propTypes = {
-  items: React.PropTypes.array.isRequired
+  itemAdded: React.PropTypes.func.isRequired,
+  data: React.PropTypes.shape({
+    items: React.PropTypes.array.isRequired
+  }).isRequired
 };
 
 export default ToDoList;

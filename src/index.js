@@ -1,13 +1,13 @@
 import './css/main.css';
 import ReactDOM from 'react-dom';
 import React from 'react';
+import configureStore from './store/configureStore.js'
 import Root from './containers/Root'
 
-const store = null;
-const history = null;
+const store = configureStore();
 
 ReactDOM.render(
-  <Root store={store} history={history} />,
+  <Root store={store} />,
   document.getElementById('app')
 );
 
