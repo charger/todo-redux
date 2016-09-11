@@ -21,6 +21,15 @@ class ToDoList extends React.Component {
       }
     };
 
+    const items = this.props.items.map(i => {
+      return <ListItem
+        key={i.id}
+        leftCheckbox={<Checkbox defaultChecked={i.isDone} />}
+        primaryText={i.title}
+        rightIconButton={<RaisedButton label="Delete" style={styles.button} />}
+      />
+    });
+
     return (
       <div style={styles.root}>
         <AppBar
@@ -38,23 +47,14 @@ class ToDoList extends React.Component {
         />
 
         <List style={styles.fillWidth}>
-          <ListItem
-            leftCheckbox={<Checkbox />}
-            primaryText="Item #1"
-            rightIconButton={<RaisedButton label="Delete" />}
-          />
-          <ListItem
-            leftCheckbox={<Checkbox />}
-            primaryText="Item #2"
-            rightIconButton={<RaisedButton label="Delete" />}
-          />
+          {items}
 
-        <ListItem>
-          <TextField
-            style={styles.fillWidth}
-            hintText="Hint Text"
-          />
-        </ListItem>
+          <ListItem>
+            <TextField
+              style={styles.fillWidth}
+              hintText="Hint Text"
+            />
+          </ListItem>
         </List>
       </div>
     );
@@ -62,6 +62,7 @@ class ToDoList extends React.Component {
 }
 
 ToDoList.propTypes = {
+  items: React.PropTypes.array.isRequired
 };
 
 export default ToDoList;
