@@ -8,6 +8,12 @@ export default function todo(state = { items: [] }, action) {
       return Object.assign({}, state, {items: newItems});
     }
 
+    case ITEM_DELETE: {
+      const id = action.id;
+      const newItems = state.items.filter((i) => i.id !== id );
+      return Object.assign({}, state, {items: newItems});
+    }
+
     default:
       return state
   }

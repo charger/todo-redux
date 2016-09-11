@@ -37,7 +37,7 @@ class ToDoList extends React.Component {
         key={i.id}
         leftCheckbox={<Checkbox defaultChecked={i.isDone} />}
         primaryText={i.title}
-        rightIconButton={<RaisedButton label="Delete" style={styles.button} />}
+        rightIconButton={<RaisedButton label="Delete" onClick={this.props.itemDeleted.bind(this, i.id)} />}
       />
     });
 
@@ -76,6 +76,7 @@ class ToDoList extends React.Component {
 
 ToDoList.propTypes = {
   itemAdded: React.PropTypes.func.isRequired,
+  itemDeleted: React.PropTypes.func.isRequired,
   data: React.PropTypes.shape({
     items: React.PropTypes.array.isRequired
   }).isRequired

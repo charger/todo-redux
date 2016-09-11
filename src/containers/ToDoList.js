@@ -1,6 +1,6 @@
 import React from 'react';
 import ToDoList from '../components/ToDoList';
-import { itemAdded }  from '../actions/ToDoActions'
+import { itemAdded, itemDeleted }  from '../actions/ToDoActions'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
@@ -9,7 +9,7 @@ const mapStateToProps = (state) => {
 };
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({itemAdded}, dispatch)
+  return bindActionCreators({itemAdded, itemDeleted}, dispatch)
 }
 
 export default connect(

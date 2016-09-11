@@ -9,3 +9,10 @@ export function itemAdded(item) {  //this is ActionCreator
     item: { id: item.id, title: item.title, isDone: item.isDone }
   }
 }
+
+export function itemDeleted(id) {
+  return {
+    type: ITEM_DELETE,
+    id: id
+  }
+}
