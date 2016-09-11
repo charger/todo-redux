@@ -1,4 +1,4 @@
-import { ITEM_ADD, ITEM_TOGGLE, ITEMS_DELETE, ITEM_DELETE } from '../actions/ToDoActions'
+import { ITEM_ADD, ITEM_TOGGLE, ITEM_DELETE } from '../actions/ToDoActions'
 
 export default function todo(state = { items: [] }, action) {
   switch (action.type) {

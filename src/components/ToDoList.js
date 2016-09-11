@@ -52,7 +52,7 @@ class ToDoList extends React.Component {
               targetOrigin={{horizontal: 'right', vertical: 'top'}}
               anchorOrigin={{horizontal: 'right', vertical: 'top'}}
             >
-              <MenuItem primaryText="Delete all" />
+              <MenuItem primaryText="Delete all" onClick={this.props.clearList}/>
             </IconMenu>
           }
         />
@@ -77,6 +77,7 @@ class ToDoList extends React.Component {
 ToDoList.propTypes = {
   itemAdded: React.PropTypes.func.isRequired,
   itemDeleted: React.PropTypes.func.isRequired,
+  clearList: React.PropTypes.func.isRequired,
   data: React.PropTypes.shape({
     items: React.PropTypes.array.isRequired
   }).isRequired

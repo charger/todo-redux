@@ -1,7 +1,6 @@
 export const ITEM_ADD = 'ITEM_ADD';
 export const ITEM_TOGGLE = 'ITEM_TOGGLE';
 export const ITEM_DELETE = 'ITEM_DELETE';
-export const ITEMS_DELETE = 'ITEMS_DELETE';
 
 export function itemAdded(item) {  //this is ActionCreator
   return { //This is actually Action
@@ -15,4 +14,10 @@ export function itemDeleted(id) {
     type: ITEM_DELETE,
     id: id
   }
+}
+
+export function clearList() {
+  return (dispatch, getState) => {
+    getState()['todo'].items.map(i => dispatch(itemDeleted(i.id)) );
+  };
 }
