@@ -1,10 +1,11 @@
 import React from 'react';
+import ToDoList from './ToDoList';
 
 class MainLayout extends React.Component {
   render() {
     return (
-      <div>Hello!</div>
-    )
+      <ToDoList />
+    );
   }
 }
 
