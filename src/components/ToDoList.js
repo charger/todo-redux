@@ -11,14 +11,14 @@ import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 
 class ToDoList extends React.Component {
   _handleAddNewItem(e) {
-    if (e.nativeEvent.key == "Enter") {
-      this.props.itemAdded({
-        id: new Date().getTime(),
-        title: this.refs.textField.input.value,
-        isDone: false
-      });
+    if (e.nativeEvent.key == "Enter" && this.refs.textField.input.value !== '') {
+      this.props.addItems(this.refs.textField.input.value, false);
       this.refs.textField.input.value = ''
     }
+  }
+
+  componentDidMount(){
+    this.props.getItems()
   }
 
   render() {
@@ -36,9 +36,9 @@ class ToDoList extends React.Component {
       return <ListItem
         key={i.id}
         primaryText={i.title}
-        onTouchTap={this.props.itemToggled.bind(this, i.id)}
-        style={{textDecoration: (i.isDone ? 'line-through' : '') }}
-        rightIconButton={<RaisedButton label="Delete" onClick={this.props.itemDeleted.bind(this, i.id)} />}
+        onTouchTap={this.props.toggleItem.bind(this, i.id)}
+        style={{textDecoration: (i.is_done ? 'line-through' : '') }}
+        rightIconButton={<RaisedButton label="Delete" style={{margin: 5}} onClick={this.props.deleteItem.bind(this, i.id)} />}
       />
     });
 
@@ -76,9 +76,10 @@ class ToDoList extends React.Component {
 }
 
 ToDoList.propTypes = {
-  itemAdded: React.PropTypes.func.isRequired,
-  itemDeleted: React.PropTypes.func.isRequired,
-  itemToggled: React.PropTypes.func.isRequired,
+  addItems: React.PropTypes.func.isRequired,
+  deleteItem: React.PropTypes.func.isRequired,
+  toggleItem: React.PropTypes.func.isRequired,
+  getItems: React.PropTypes.func.isRequired,
   clearList: React.PropTypes.func.isRequired,
   data: React.PropTypes.shape({
     items: React.PropTypes.array.isRequired

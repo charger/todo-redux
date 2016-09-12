@@ -2,6 +2,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 var NODE_ENV = process.env.NODE_ENV || 'development';
+var API_ENDPOINT = 'http://localhost:3000';
 var DEBUG = NODE_ENV !== 'production';
 
 module.exports = {
@@ -22,6 +23,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(NODE_ENV),
+        'API_ENDPOINT': JSON.stringify(API_ENDPOINT),
       }
     })
   ],
