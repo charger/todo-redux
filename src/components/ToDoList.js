@@ -35,8 +35,9 @@ class ToDoList extends React.Component {
     const items = this.props.data.items.map(i => {
       return <ListItem
         key={i.id}
-        leftCheckbox={<Checkbox defaultChecked={i.isDone} />}
         primaryText={i.title}
+        onTouchTap={this.props.itemToggled.bind(this, i.id)}
+        style={{textDecoration: (i.isDone ? 'line-through' : '') }}
         rightIconButton={<RaisedButton label="Delete" onClick={this.props.itemDeleted.bind(this, i.id)} />}
       />
     });
@@ -77,6 +78,7 @@ class ToDoList extends React.Component {
 ToDoList.propTypes = {
   itemAdded: React.PropTypes.func.isRequired,
   itemDeleted: React.PropTypes.func.isRequired,
+  itemToggled: React.PropTypes.func.isRequired,
   clearList: React.PropTypes.func.isRequired,
   data: React.PropTypes.shape({
     items: React.PropTypes.array.isRequired

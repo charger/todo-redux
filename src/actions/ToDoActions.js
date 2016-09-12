@@ -9,6 +9,13 @@ export function itemAdded(item) {  //this is ActionCreator
   }
 }
 
+export function itemToggled(id) {
+  return {
+    type: ITEM_TOGGLE,
+    id: id
+  }
+}
+
 export function itemDeleted(id) {
   return {
     type: ITEM_DELETE,

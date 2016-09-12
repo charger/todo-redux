@@ -14,6 +14,14 @@ export default function todo(state = { items: [] }, action) {
       return Object.assign({}, state, {items: newItems});
     }
 
+    case ITEM_TOGGLE: {
+      const id = action.id;
+      const toggledOldItem = state.items.find(i => i.id === id );
+      const toggledNewItem = Object.assign({}, toggledOldItem, {isDone: !toggledOldItem.isDone});
+      const newItems = state.items.filter((i) => i.id !== id ).concat(toggledNewItem);
+      return Object.assign({}, state, {items: newItems});
+    }
+
     default:
       return state
   }
