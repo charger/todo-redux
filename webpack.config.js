@@ -2,8 +2,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var webpack = require('webpack');
 var path = require('path');
 var NODE_ENV = process.env.NODE_ENV || 'development';
-var API_ENDPOINT = 'http://localhost:3000';
-var DEBUG = NODE_ENV !== 'production';
+const API_ENDPOINT = `http://localhost:3000`;
+const WS_ENDPOINT = `ws://localhost:3000/cable`;
+const DEBUG = NODE_ENV !== 'production';
 
 module.exports = {
   devtool: 'eval',
@@ -24,6 +25,7 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify(NODE_ENV),
         'API_ENDPOINT': JSON.stringify(API_ENDPOINT),
+        'WS_ENDPOINT': JSON.stringify(WS_ENDPOINT),
       }
     })
   ],
